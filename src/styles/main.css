@@ -230,6 +230,8 @@ body {
 
 /* インタラクティブスライダー */
 .step-slider {
+  width: 360px;
+  margin: 0 auto;
   background: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -590,6 +592,10 @@ body {
 }
 
 @media (min-width: 768px) {
+  .step-slider {
+    width: 440px;
+  }
+
   .step-slider__image-wrapper {
     width: 400px;
     height: 400px;
