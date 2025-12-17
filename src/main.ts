@@ -59,7 +59,6 @@ function updateProgressBar(): void {
 
 // ステップを表示
 function renderStep(stepIndex: number): void {
-  const step = steps[stepIndex];
   const container = document.getElementById('interactiveStepsContainer');
   if (!container) return;
 
