@@ -8,64 +8,65 @@
   <link rel="stylesheet" href="/src/styles/main.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="card card--hero card--split">
-        <div class="card__content">
-          <p class="card__eyebrow">ひとり暮らしスタートアップ</p>
-          <h1 class="card__title">🎀 かます結びマスター</h1>
-          <p class="card__subtitle">荷造りやキャンプで役立つ、シンプルで覚えやすい紐の結び方ガイド</p>
-        </div>
-        <div class="card__illustration card__illustration--hero" aria-hidden="true">
-          <svg viewBox="0 0 140 80" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="20" width="130" height="50" rx="8" fill="#FFEBD5" stroke="#111111" stroke-width="2" />
-            <circle cx="35" cy="40" r="10" fill="#FFB3BC" stroke="#111111" stroke-width="2" />
-            <circle cx="70" cy="30" r="10" fill="#A8C5F0" stroke="#111111" stroke-width="2" />
-            <circle cx="105" cy="42" r="10" fill="#B8E4C9" stroke="#111111" stroke-width="2" />
-            <path d="M25 58 Q 70 20 115 58" stroke="#111111" stroke-width="2.5" fill="none" stroke-linecap="round" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  </header>
+  <!-- カラフルなインクの飛び散り背景（後で画像に置き換え可能） -->
+  <div class="background-splashes" aria-hidden="true"></div>
 
-  <main class="main">
-    <!-- イントロダクション -->
-    <section class="intro snap-section">
+  <div class="main-wrapper">
+    <!-- ヒーローセクション -->
+    <section class="hero snap-section">
       <div class="container">
-        <div class="card card--intro card--split">
-          <div class="card__content">
-            <h2 class="section-title">かます結びって何？</h2>
-            <p class="intro__text">
-              かます結びは、荷物を運ぶときや、物を固定するときに使える便利な結び方です。
-              一度結ぶと簡単にはほどけず、でも必要なときにはほどきやすい、実用的な結び方です。
-              一人暮らしで引っ越しや荷物の整理をするときに、きっと役立ちます！
-            </p>
+        <div class="hero__content">
+          <div class="hero__badge">
+            <span class="hero__badge-icon">✨</span>
+            <span class="hero__badge-text">3分でマスター</span>
           </div>
-          <div class="card__illustration card__illustration--intro" aria-hidden="true">
-            <svg viewBox="0 0 140 80" xmlns="http://www.w3.org/2000/svg">
-              <rect x="10" y="18" width="120" height="50" rx="6" fill="#E3F2FF" stroke="#111111" stroke-width="2" />
-              <rect x="20" y="26" width="40" height="28" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="2" />
-              <line x1="28" y1="34" x2="52" y2="34" stroke="#FFB3BC" stroke-width="3" stroke-linecap="round" />
-              <line x1="28" y1="42" x2="52" y2="42" stroke="#7B9FE8" stroke-width="3" stroke-linecap="round" />
-              <path d="M65 50 Q 90 30 115 50" stroke="#111111" stroke-width="2.5" fill="none" stroke-linecap="round" />
-            </svg>
+          <h1 class="hero__title">
+            一生使える、<br />
+            結びの基本。
+          </h1>
+          <div class="hero__description">
+            <p>覚えることは「2回くぐらせる」だけ。</p>
+            <p>引越しやゴミ出しで役立つ必須スキルを3分でマスター。</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 手順説明 -->
+    <!-- イントロダクション -->
+    <section class="intro snap-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-icon section-icon--red">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <h2 class="section-title">一人の荷造りを、もっと楽に。</h2>
+        </div>
+        <div class="intro__content">
+          <p>誰かに「ここ指で押さえてて！」と頼めない一人暮らしの荷造り。</p>
+          <p>かます結びなら、引いた時点でロックがかかるため、一人でも焦らず確実に結べます。</p>
+          <p class="intro__highlight">引越し準備や日々のゴミ出しが、驚くほどスムーズになります。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 手順説明（インタラクティブスライダー） -->
     <section class="steps snap-section">
       <div class="container">
-        <div class="card card--steps">
-          <div class="card__header-row">
-            <h2 class="section-title">かます結びの手順</h2>
-            <p class="card__hint">ステップごとに図と説明を見ながら、スマホ片手にゆっくり進めてみましょう。</p>
+        <div class="section-header">
+          <div class="section-icon section-icon--orange">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
           </div>
-          <div class="steps__container" id="stepsContainer">
-            <!-- 手順はJavaScriptで動的に生成 -->
-          </div>
+          <h2 class="section-title">かます結びの手順</h2>
+        </div>
+        <div id="interactiveStepsContainer">
+          <!-- インタラクティブスライダーはJavaScriptで動的に生成 -->
         </div>
       </div>
     </section>
@@ -73,33 +74,17 @@
     <!-- YouTube動画 -->
     <section class="video snap-section">
       <div class="container">
-        <div class="card card--video card--split">
-          <div class="card__content">
-            <h2 class="section-title">動画で見るかます結び</h2>
-            <p class="card__hint">
-              文字だけでは分かりにくいところも、手元の動きを動画でチェックできます。
-              通学中など、すきま時間の視聴にもおすすめです。
-            </p>
-            <div class="video__container">
-              <div class="video__placeholder">
-                <p class="video__placeholder-text">
-                  📹 YouTube動画のURLを設定してください
-                </p>
-                <p class="video__placeholder-hint">
-                  （動画IDを src/video.ts に設定すると表示されます）
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="card__illustration card__illustration--video" aria-hidden="true">
-            <svg viewBox="0 0 140 80" xmlns="http://www.w3.org/2000/svg">
-              <rect x="12" y="18" width="116" height="50" rx="6" fill="#FFF5D9" stroke="#111111" stroke-width="2" />
-              <rect x="24" y="26" width="60" height="34" rx="4" fill="#FFFFFF" stroke="#111111" stroke-width="2" />
-              <polygon points="42,34 54,41 42,48" fill="#FF8A95" stroke="#111111" stroke-width="1.5" />
-              <circle cx="100" cy="40" r="10" fill="#A8C5F0" stroke="#111111" stroke-width="2" />
-              <rect x="95" y="52" width="10" height="8" rx="2" fill="#FFFFFF" stroke="#111111" stroke-width="1.5" />
+        <div class="section-header">
+          <div class="section-icon section-icon--yellow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
           </div>
+          <h2 class="section-title">動画で「流れ」を確認。</h2>
+        </div>
+        <p class="video__description">2回くぐらせる手元の動きを、動画でチェックしよう。</p>
+        <div class="video__container" id="videoContainer">
+          <!-- 動画はJavaScriptで動的に生成 -->
         </div>
       </div>
     </section>
@@ -107,43 +92,24 @@
     <!-- コツとポイント -->
     <section class="tips snap-section">
       <div class="container">
-        <div class="card card--tips card--split">
-          <div class="card__content">
-            <h2 class="section-title">💡 コツとポイント</h2>
-            <ul class="tips__list">
-              <li class="tips__item">
-                <span class="tips__icon">✨</span>
-                <p>最初はゆっくりと、手順を確認しながら結んでみましょう</p>
-              </li>
-              <li class="tips__item">
-                <span class="tips__icon">🎯</span>
-                <p>紐が交差する部分をしっかりと押さえると、きれいに結べます</p>
-              </li>
-              <li class="tips__item">
-                <span class="tips__icon">💪</span>
-                <p>何度か練習すると、自然と手が覚えます</p>
-              </li>
-              <li class="tips__item">
-                <span class="tips__icon">📦</span>
-                <p>引っ越しの荷造りや、キャンプのテント設営などで大活躍します</p>
-              </li>
-            </ul>
-          </div>
-          <div class="card__illustration card__illustration--tips" aria-hidden="true">
-            <svg viewBox="0 0 140 80" xmlns="http://www.w3.org/2000/svg">
-              <rect x="14" y="20" width="112" height="46" rx="6" fill="#E8FFEC" stroke="#111111" stroke-width="2" />
-              <circle cx="38" cy="40" r="9" fill="#FFFFFF" stroke="#111111" stroke-width="2" />
-              <path d="M38 32 L38 28 M38 52 L38 48 M30 40 L26 40 M50 40 L46 40 M33 35 L30 32 M45 48 L42 45 M33 45 L30 48 M45 32 L42 35"
-                    stroke="#111111" stroke-width="2" stroke-linecap="round" />
-              <path d="M70 32 H110" stroke="#111111" stroke-width="2" stroke-linecap="round" />
-              <path d="M70 42 H100" stroke="#111111" stroke-width="2" stroke-linecap="round" />
-              <path d="M70 50 H95" stroke="#111111" stroke-width="2" stroke-linecap="round" />
+        <div class="section-header">
+          <div class="section-icon section-icon--pink">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 11l3 3L22 4"></path>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
             </svg>
           </div>
+          <h2 class="section-title">失敗しないコツ</h2>
+        </div>
+        <div class="tips__list" id="tipsList">
+          <!-- コツはJavaScriptで動的に生成 -->
+        </div>
+        <div class="tips__footer">
+          <p>何度か練習すれば、自然に手が覚えます。<br />一人暮らしの強い味方になりますよ！</p>
         </div>
       </div>
     </section>
-  </main>
+  </div>
 
   <footer class="footer">
     <div class="container">
@@ -154,4 +120,3 @@
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
-

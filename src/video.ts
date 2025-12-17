@@ -4,7 +4,7 @@
 export const YOUTUBE_VIDEO_ID = 'gTbXDHrsXRI';
 
 export function initVideo(): void {
-  const container = document.querySelector('.video__container');
+  const container = document.getElementById('videoContainer');
   if (!container) return;
 
   if (YOUTUBE_VIDEO_ID) {

@@ -1,134 +1,132 @@
-// かます結びの手順データ
+// かます結びの手順データ（インタラクティブスライダー用）
 export interface Step {
   number: number;
   title: string;
   description: string;
-  svg: string; // SVGコード（後で図を追加）
+  isImportant: boolean;
+  imagePath: string; // 画像ファイルのパス
+  svg: string; // 画像プレースホルダー用のSVG（画像がない場合に使用）
 }
 
-// SVG図（簡易版 - 後で実際の図に置き換え可能）
-function getStep1SVG(): string {
-  return `
-    <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-      <line x1="20" y1="50" x2="180" y2="50" stroke="#4A90E2" stroke-width="4" stroke-linecap="round"/>
-      <text x="100" y="30" text-anchor="middle" font-size="14" fill="#666">紐を準備</text>
-    </svg>
-  `;
+// 画像プレースホルダー用の簡易SVG（かます結びをイメージ）
+function getStepSVG(stepNumber: number): string {
+  const svgs = [
+    // Step 0: 下準備
+    `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#f3f4f6"/>
+      <circle cx="200" cy="150" r="30" fill="#e5e7eb" stroke="#111" stroke-width="3"/>
+      <circle cx="200" cy="250" r="30" fill="#e5e7eb" stroke="#111" stroke-width="3"/>
+      <path d="M 170 150 Q 200 200 170 250" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M 230 150 Q 200 200 230 250" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <text x="200" y="320" text-anchor="middle" font-size="32" font-weight="bold" fill="#111">Step 0</text>
+    </svg>`,
+    // Step 1: 交差
+    `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#f3f4f6"/>
+      <line x1="100" y1="200" x2="300" y2="200" stroke="#ef4444" stroke-width="6" stroke-linecap="round"/>
+      <line x1="200" y1="100" x2="200" y2="300" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="200" cy="200" r="15" fill="#fbbf24" stroke="#111" stroke-width="2"/>
+      <text x="200" y="320" text-anchor="middle" font-size="32" font-weight="bold" fill="#111">Step 1</text>
+    </svg>`,
+    // Step 2: くぐらせ
+    `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#f3f4f6"/>
+      <line x1="100" y1="200" x2="300" y2="200" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+      <path d="M 200 100 Q 250 200 200 300" stroke="#ef4444" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="200" cy="200" r="12" fill="#fbbf24" stroke="#111" stroke-width="2"/>
+      <text x="200" y="320" text-anchor="middle" font-size="32" font-weight="bold" fill="#111">Step 2</text>
+    </svg>`,
+    // Step 3: 1回目のくぐらせ
+    `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#f3f4f6"/>
+      <line x1="100" y1="200" x2="300" y2="200" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+      <path d="M 200 100 Q 250 200 200 300" stroke="#ef4444" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M 200 110 Q 260 200 200 290" stroke="#ef4444" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <circle cx="200" cy="200" r="12" fill="#fbbf24" stroke="#111" stroke-width="2"/>
+      <text x="200" y="320" text-anchor="middle" font-size="32" font-weight="bold" fill="#111">Step 3</text>
+    </svg>`,
+    // Step 4: 2回目のくぐらせ
+    `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#f3f4f6"/>
+      <line x1="100" y1="200" x2="300" y2="200" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+      <path d="M 200 100 Q 250 200 200 300" stroke="#ef4444" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M 200 110 Q 260 200 200 290" stroke="#ef4444" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="200" cy="200" r="15" fill="#10b981" stroke="#111" stroke-width="2" opacity="0.5"/>
+      <text x="200" y="320" text-anchor="middle" font-size="32" font-weight="bold" fill="#111">Step 4</text>
+    </svg>`,
+    // Step 5: 固定＆完成
+    `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#f3f4f6"/>
+      <path d="M 150 150 Q 200 200 150 250" stroke="#3b82f6" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M 250 150 Q 200 200 250 250" stroke="#ef4444" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="200" cy="200" r="20" fill="#10b981" stroke="#111" stroke-width="3"/>
+      <path d="M 190 200 L 200 210 L 210 190" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <text x="200" y="320" text-anchor="middle" font-size="32" font-weight="bold" fill="#111">Step 5</text>
+    </svg>`,
+  ];
+  return svgs[stepNumber] || svgs[0];
 }
 
-function getStep2SVG(): string {
-  return `
-    <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-      <line x1="50" y1="20" x2="50" y2="80" stroke="#4A90E2" stroke-width="4" stroke-linecap="round"/>
-      <line x1="20" y1="50" x2="80" y2="50" stroke="#E24A4A" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="50" cy="50" r="5" fill="#FFD700"/>
-      <text x="100" y="30" text-anchor="middle" font-size="14" fill="#666">交差させる</text>
-    </svg>
-  `;
-}
-
-function getStep3SVG(): string {
-  return `
-    <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 50 20 Q 100 50 50 80" stroke="#4A90E2" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <line x1="20" y1="50" x2="80" y2="50" stroke="#E24A4A" stroke-width="4" stroke-linecap="round"/>
-      <text x="100" y="30" text-anchor="middle" font-size="14" fill="#666">輪を作る</text>
-    </svg>
-  `;
-}
-
-function getStep4SVG(): string {
-  return `
-    <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 50 20 Q 100 50 50 80" stroke="#4A90E2" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <path d="M 50 25 Q 100 50 50 75" stroke="#4A90E2" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
-      <line x1="20" y1="50" x2="80" y2="50" stroke="#E24A4A" stroke-width="4" stroke-linecap="round"/>
-      <text x="100" y="30" text-anchor="middle" font-size="14" fill="#666">もう一度輪を作る</text>
-    </svg>
-  `;
-}
-
-function getStep5SVG(): string {
-  return `
-    <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 50 20 Q 100 50 50 80" stroke="#4A90E2" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <path d="M 50 25 Q 100 50 50 75" stroke="#4A90E2" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <line x1="20" y1="50" x2="80" y2="50" stroke="#E24A4A" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="50" cy="50" r="8" fill="#4CAF50" opacity="0.3"/>
-      <text x="100" y="30" text-anchor="middle" font-size="14" fill="#666">引き締める</text>
-    </svg>
-  `;
+// 画像ファイルのパスを取得
+function getImagePath(stepNumber: number): string {
+  const imagePaths = [
+    '/images/step0.png',
+    '/images/step1.png',
+    '/images/step2.png',
+    '/images/step3.png',
+    '/images/step4.png',
+    '/images/step5.png',
+  ];
+  return imagePaths[stepNumber] || imagePaths[0];
 }
 
 export const steps: Step[] = [
   {
+    number: 0,
+    title: '下準備',
+    description: '紐を二重にして、二本の輪を作ります。',
+    isImportant: false,
+    imagePath: getImagePath(0),
+    svg: getStepSVG(0),
+  },
+  {
     number: 1,
-    title: '紐を準備する',
-    description: '結びたい2本の紐を用意します。同じ長さの紐を使うと結びやすいです。',
-    svg: getStep1SVG(),
+    title: '輪を作る',
+    description: '二本の輪を交差させて、輪を作ります。',
+    isImportant: false,
+    imagePath: getImagePath(1),
+    svg: getStepSVG(1),
   },
   {
     number: 2,
-    title: '紐を交差させる',
-    description: '2本の紐を十字に交差させます。交差する位置は、結びたい位置に合わせて調整しましょう。',
-    svg: getStep2SVG(),
+    title: '紐を上に乗せる',
+    description: '上側の輪を下側の輪の上に乗せます。',
+    isImportant: false,
+    imagePath: getImagePath(2),
+    svg: getStepSVG(2),
   },
   {
     number: 3,
-    title: '輪を作る',
-    description: '片方の紐の端を、もう片方の紐の下を通して輪を作ります。',
-    svg: getStep3SVG(),
+    title: '紐を下に潜らせる',
+    description: '上側の輪を下側の輪の下に潜らせます。ここが重要なポイントです。',
+    isImportant: true,
+    imagePath: getImagePath(3),
+    svg: getStepSVG(3),
   },
   {
     number: 4,
-    title: 'もう一度輪を作る',
-    description: '同じ方向にもう一度輪を作ります。最初の輪と同じ方向に回すのがポイントです。',
-    svg: getStep4SVG(),
+    title: '輪に紐を通す',
+    description: '輪に紐を通して、結び目を形成します。ここも重要なポイントです。',
+    isImportant: true,
+    imagePath: getImagePath(4),
+    svg: getStepSVG(4),
   },
   {
     number: 5,
-    title: '引き締める',
-    description: '両方の紐を引っ張って、結び目をしっかりと引き締めます。',
-    svg: getStep5SVG(),
+    title: '紐を引っ張って完成',
+    description: '両端を引っ張ると、結び目がロックされて完成です。',
+    isImportant: false,
+    imagePath: getImagePath(5),
+    svg: getStepSVG(5),
   },
 ];
-
-// 手順を表示する関数
-export function initSteps(): void {
-  const container = document.getElementById('stepsContainer');
-  if (!container) return;
-
-  container.innerHTML = steps
-    .map(
-      (step) => `
-    <div class="step-card" data-step="${step.number}">
-      <div class="step-card__number">${step.number}</div>
-      <div class="step-card__content">
-        <h3 class="step-card__title">${step.title}</h3>
-        <div class="step-card__diagram">
-          ${step.svg}
-        </div>
-        <p class="step-card__description">${step.description}</p>
-      </div>
-    </div>
-  `
-    )
-    .join('');
-
-  // アニメーション効果を追加
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('step-card--visible');
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-
-  container.querySelectorAll('.step-card').forEach((card) => {
-    observer.observe(card);
-  });
-}
-
