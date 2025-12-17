@@ -67,15 +67,15 @@ function getStepSVG(stepNumber: number): string {
   return svgs[stepNumber] || svgs[0];
 }
 
-// 画像ファイルのパスを取得
+// 画像ファイルのパスを取得（絶対パス）
 function getImagePath(stepNumber: number): string {
   const imagePaths = [
-    '/images/step0.png',
-    '/images/step1.png',
-    '/images/step2.png',
-    '/images/step3.png',
-    '/images/step4.png',
-    '/images/step5.png',
+    '/mediadesign/images/step0.png',
+    '/mediadesign/images/step1.png',
+    '/mediadesign/images/step2.png',
+    '/mediadesign/images/step3.png',
+    '/mediadesign/images/step4.png',
+    '/mediadesign/images/step5.png',
   ];
   return imagePaths[stepNumber] || imagePaths[0];
 }

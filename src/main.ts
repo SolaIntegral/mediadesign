@@ -383,7 +383,7 @@ function initBackgroundSplashes(): void {
     splash.style.height = `${size}px`;
     splash.style.left = `${left}%`;
     splash.style.top = `${top}%`;
-    splash.style.backgroundImage = `url('/images/${color}.png')`;
+    splash.style.backgroundImage = `url('/mediadesign/images/${color}.png')`;
     splash.style.animationDelay = `${delay}s`;
     splash.style.animationDuration = `${duration}s`;
     
@@ -417,23 +417,50 @@ function initSectionSnapAnimations(): void {
   const sections = document.querySelectorAll<HTMLElement>('.snap-section');
   if (!sections.length) return;
 
-  const observer = new IntersectionObserver(
+  // アクティブなセクションを検出するObserver
+  const activeObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         const target = entry.target as HTMLElement;
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
           target.classList.add('snap-section--active');
+          target.classList.remove('snap-section--next-visible');
         } else {
           target.classList.remove('snap-section--active');
         }
       });
     },
     {
-      threshold: 0.5,
+      threshold: [0, 0.5, 1],
     }
   );
 
-  sections.forEach((section) => observer.observe(section));
+  // 次のセクションを少し見えるようにするObserver
+  const nextVisibleObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target as HTMLElement;
+        // セクションがビューポートの下部に少し見えている場合
+        if (entry.isIntersecting && entry.intersectionRatio > 0 && entry.intersectionRatio < 0.3) {
+          // アクティブでない場合のみ、次のセクションとして表示
+          if (!target.classList.contains('snap-section--active')) {
+            target.classList.add('snap-section--next-visible');
+          }
+        } else {
+          target.classList.remove('snap-section--next-visible');
+        }
+      });
+    },
+    {
+      threshold: [0, 0.1, 0.2, 0.3],
+      rootMargin: '0px 0px -80% 0px', // ビューポートの下部20%に入ったら表示
+    }
+  );
+
+  sections.forEach((section) => {
+    activeObserver.observe(section);
+    nextVisibleObserver.observe(section);
+  });
 }
 
 // ページ読み込み時に初期化

@@ -120,6 +120,12 @@ body {
   transform: translateY(0);
 }
 
+/* 次のセクションを少し見えるようにする */
+.snap-section--next-visible {
+  opacity: 0.25;
+  transform: translateY(20px);
+}
+
 /* ヒーローセクション */
 .hero {
   text-align: center;
