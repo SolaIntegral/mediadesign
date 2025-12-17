@@ -1,6 +1,7 @@
 // YouTube動画の設定
-// 動画IDを設定してください（例: https://www.youtube.com/watch?v=VIDEO_ID の VIDEO_ID 部分）
-export const YOUTUBE_VIDEO_ID = ''; // ここに動画IDを入力
+// 今回埋め込む動画: https://www.youtube.com/watch?v=gTbXDHrsXRI
+// 上記URLの「v=」以降の文字列が動画IDです
+export const YOUTUBE_VIDEO_ID = 'gTbXDHrsXRI';
 
 export function initVideo(): void {
   const container = document.querySelector('.video__container');
