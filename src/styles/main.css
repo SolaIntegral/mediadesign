@@ -283,6 +283,8 @@ body {
   align-items: center;
   justify-content: center;
   background: #ffffff;
+  transition: opacity 0.3s ease;
+  opacity: 1;
 }
 
 .step-slider__image img {
@@ -410,6 +412,8 @@ body {
 .step-slider__text {
   padding: 1.5rem;
   background: white;
+  transition: opacity 0.3s ease;
+  opacity: 1;
 }
 
 .step-slider__header {

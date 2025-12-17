@@ -10,7 +10,7 @@ let stepTimer: number | null = null;
 let touchStartX = 0;
 let touchEndX = 0;
 
-const DURATION = 2000; // 2秒
+const DURATION = 4000; // 4秒
 
 // プログレスバーのアニメーション
 function startProgressAnimation(): void {
@@ -68,19 +68,36 @@ function renderStep(stepIndex: number): void {
   const stepTitle = container.querySelector<HTMLElement>('.step-slider__title');
   const stepDescription = container.querySelector<HTMLElement>('.step-slider__description');
   const importantBadge = container.querySelector<HTMLElement>('.step-slider__important');
+  const textArea = container.querySelector<HTMLElement>('.step-slider__text');
 
+  // フェードアウト
   if (imageArea) {
-    // 画像が存在する場合は画像を表示、存在しない場合はSVGプレースホルダーを表示
-    const img = new Image();
-    img.onload = () => {
-      imageArea.innerHTML = `<img src="${stepData.imagePath}" alt="${stepData.title}" style="width: 100%; height: 100%; object-fit: contain;" />`;
-    };
-    img.onerror = () => {
-      // 画像が存在しない場合はSVGプレースホルダーを表示
-      imageArea.innerHTML = stepData.svg;
-    };
-    img.src = stepData.imagePath;
+    imageArea.style.opacity = '0';
   }
+  if (textArea) {
+    textArea.style.opacity = '0';
+  }
+
+  // フェードイン（少し遅延させてスムーズに）
+  setTimeout(() => {
+    if (imageArea) {
+      // 画像が存在する場合は画像を表示、存在しない場合はSVGプレースホルダーを表示
+      const img = new Image();
+      img.onload = () => {
+        imageArea.innerHTML = `<img src="${stepData.imagePath}" alt="${stepData.title}" style="width: 100%; height: 100%; object-fit: contain;" />`;
+        imageArea.style.opacity = '1';
+      };
+      img.onerror = () => {
+        // 画像が存在しない場合はSVGプレースホルダーを表示
+        imageArea.innerHTML = stepData.svg;
+        imageArea.style.opacity = '1';
+      };
+      img.src = stepData.imagePath;
+    }
+    if (textArea) {
+      textArea.style.opacity = '1';
+    }
+  }, 200); // 200msの遅延でフェードイン
   if (stepNumber) {
     stepNumber.textContent = stepData.number.toString();
     stepNumber.className = `step-slider__number ${stepData.isImportant ? 'step-slider__number--important' : ''}`;
