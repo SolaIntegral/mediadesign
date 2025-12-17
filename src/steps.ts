@@ -4,6 +4,7 @@ export interface Step {
   title: string;
   description: string;
   isImportant: boolean;
+  duration: number; // 表示時間（ミリ秒）
   imagePath: string; // 画像ファイルのパス
   svg: string; // 画像プレースホルダー用のSVG（画像がない場合に使用）
 }
@@ -86,6 +87,7 @@ export const steps: Step[] = [
     title: '下準備（巻きつけ）',
     description: 'まずは対象物に紐を巻きつけます。紐がねじれないように整えておくと、摩擦が均等にかかり、より強固に固定できます。',
     isImportant: false,
+    duration: 6000, // 6秒（簡単なステップ）
     imagePath: getImagePath(0),
     svg: getStepSVG(0),
   },
@@ -94,6 +96,7 @@ export const steps: Step[] = [
     title: '輪を作って重ねる',
     description: '紐の先端を、巻きつけた紐の上に重ねます。交差させた部分に「輪（ループ）」を作るイメージで、上から被せるように置くのがポイントです。',
     isImportant: false,
+    duration: 6000, // 6秒（簡単なステップ）
     imagePath: getImagePath(1),
     svg: getStepSVG(1),
   },
@@ -102,6 +105,7 @@ export const steps: Step[] = [
     title: '下から「新しい輪」を引き出す',
     description: '重ねた紐の下をくぐらせ、新しい輪を引き出します。紐の先端をすべて引き抜いてしまわず、「折りたたんだ状態（ループ）」で止めるのがコツです。これが後に滑車の役割を果たします。',
     isImportant: true,
+    duration: 9000, // 9秒（重要な/複雑なステップ）
     imagePath: getImagePath(2),
     svg: getStepSVG(2),
   },
@@ -110,6 +114,7 @@ export const steps: Step[] = [
     title: '形を整える',
     description: '結び目が崩れないよう、軽く引いて整えます。いきなり強く引くと結び目がズレてしまうことがあるため、まずは指で結び目を押さえながら、ループの大きさを調整します。',
     isImportant: false,
+    duration: 6000, // 6秒（簡単なステップ）
     imagePath: getImagePath(3),
     svg: getStepSVG(3),
   },
@@ -118,6 +123,7 @@ export const steps: Step[] = [
     title: 'テコの原理で締め上げる',
     description: '輪に通した紐を、手前（または角）に向かって強く引きます。ここで「滑車の原理」が働きます。引く力が倍増して伝わるため、女性の力でも箱に食い込むほど強力に締め上げることができます。',
     isImportant: true,
+    duration: 9000, // 9秒（重要な/複雑なステップ）
     imagePath: getImagePath(4),
     svg: getStepSVG(4),
   },
@@ -126,6 +132,7 @@ export const steps: Step[] = [
     title: '完成',
     description: '緩みがないか確認して完了です。摩擦の力でガッチリとロックされていますが、片付けの際は、余っている紐の端を引くだけで一瞬でほどくことができます。',
     isImportant: false,
+    duration: 6000, // 6秒（簡単なステップ）
     imagePath: getImagePath(5),
     svg: getStepSVG(5),
   },

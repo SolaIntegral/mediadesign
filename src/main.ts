@@ -10,19 +10,20 @@ let stepTimer: number | null = null;
 let touchStartX = 0;
 let touchEndX = 0;
 
-const DURATION = 4000; // 4秒
-
 // プログレスバーのアニメーション
 function startProgressAnimation(): void {
   if (progressTimer) clearInterval(progressTimer);
   if (stepTimer) clearTimeout(stepTimer);
+
+  const currentStepData = steps[currentStep];
+  const duration = currentStepData.duration;
 
   progress = 0;
   const startTime = Date.now();
 
   progressTimer = window.setInterval(() => {
     const elapsed = Date.now() - startTime;
-    progress = Math.min((elapsed / DURATION) * 100, 100);
+    progress = Math.min((elapsed / duration) * 100, 100);
     updateProgressBar();
 
     if (progress >= 100) {
@@ -34,7 +35,7 @@ function startProgressAnimation(): void {
     if (isPlaying) {
       goToNextStep();
     }
-  }, DURATION);
+  }, duration);
 }
 
 // プログレスバーを更新
