@@ -66,7 +66,7 @@ body {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, 'Noto Sans JP', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, 'Noto Sans JP', sans-serif;
   line-height: 1.7;
   color: var(--color-text);
   background: var(--color-bg-gradient);
@@ -81,62 +81,79 @@ body {
   padding: 0 var(--spacing-md);
 }
 
-/* ヘッダー */
+/* ヘッダー（1枚目のカード用の余白） */
 .header {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-purple) 100%);
-  color: white;
-  padding: var(--spacing-2xl) 0;
-  text-align: center;
-  box-shadow: var(--shadow-lg);
-  position: relative;
-  overflow: hidden;
+  padding: var(--spacing-xl) 0 var(--spacing-2xl);
 }
 
-.header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -10%;
-  width: 300px;
-  height: 300px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  animation: float 6s ease-in-out infinite;
+/* カード共通スタイル（白いボックス＋黒枠＋オフセット影） */
+.card {
+  background: #ffffff;
+  border-radius: 24px;
+  border: 3px solid #111111;
+  box-shadow: 0 8px 0 #111111;
+  padding: var(--spacing-lg);
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
-.header::after {
-  content: '';
-  position: absolute;
-  bottom: -30%;
-  left: -5%;
-  width: 200px;
-  height: 200px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 50%;
-  animation: float 8s ease-in-out infinite reverse;
+.card--hero {
+  margin-top: var(--spacing-lg);
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
+.card--split {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
 }
 
-.header__title {
-  font-size: 3rem;
+.card__content {
+  flex: 1;
+}
+
+.card__eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-lighter);
+  margin-bottom: var(--spacing-xs);
+}
+
+.card__title {
+  font-size: 2rem;
   font-weight: 800;
-  margin-bottom: var(--spacing-sm);
-  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
-  position: relative;
-  z-index: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--spacing-xs);
 }
 
-.header__subtitle {
-  font-size: 1.3rem;
-  opacity: 0.95;
-  font-weight: 500;
-  position: relative;
-  z-index: 1;
+.card__subtitle {
+  font-size: 1rem;
+  color: var(--color-text-light);
+}
+
+.card__hint {
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-md);
+}
+
+.card__header-row {
+  margin-bottom: var(--spacing-md);
+}
+
+.card__illustration {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__illustration svg {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
 }
 
 /* メインコンテンツ */
@@ -186,26 +203,9 @@ body {
   border-radius: var(--radius-full);
 }
 
-/* イントロダクション - Bento Grids風 */
+/* イントロダクション（セクション自体は背景のみ・中身はカード） */
 .intro {
-  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-purple-light) 100%);
-  padding: var(--spacing-xl);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
-  border: 3px solid var(--color-border-bold);
-  position: relative;
-  overflow: hidden;
-}
-
-.intro::before {
-  content: '';
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 100px;
-  height: 100px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
+  padding: var(--spacing-2xl) 0;
 }
 
 .intro__text {
@@ -358,17 +358,9 @@ body {
   font-weight: 500;
 }
 
-/* 動画セクション - Bento Grids風 */
+/* 動画セクション */
 .video {
-}
-
-.video__container {
-  background: var(--color-bg-card);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-  border: 3px solid var(--color-border-bold);
-  position: relative;
+  padding: var(--spacing-2xl) 0;
 }
 
 .video__wrapper {
@@ -439,13 +431,9 @@ body {
   z-index: 1;
 }
 
-/* コツとポイント - Bento Grids風 */
+/* コツとポイント（セクション背景のみ） */
 .tips {
-  background: var(--color-bg-card);
-  border-radius: var(--radius-xl);
-  padding: var(--spacing-xl);
-  box-shadow: var(--shadow-lg);
-  border: 2px solid var(--color-border);
+  padding: var(--spacing-2xl) 0;
 }
 
 .tips__list {
