@@ -6,39 +6,6 @@ export interface Step {
   svg: string; // SVGコード（後で図を追加）
 }
 
-export const steps: Step[] = [
-  {
-    number: 1,
-    title: '紐を準備する',
-    description: '結びたい2本の紐を用意します。同じ長さの紐を使うと結びやすいです。',
-    svg: getStep1SVG(),
-  },
-  {
-    number: 2,
-    title: '紐を交差させる',
-    description: '2本の紐を十字に交差させます。交差する位置は、結びたい位置に合わせて調整しましょう。',
-    svg: getStep2SVG(),
-  },
-  {
-    number: 3,
-    title: '輪を作る',
-    description: '片方の紐の端を、もう片方の紐の下を通して輪を作ります。',
-    svg: getStep3SVG(),
-  },
-  {
-    number: 4,
-    title: 'もう一度輪を作る',
-    description: '同じ方向にもう一度輪を作ります。最初の輪と同じ方向に回すのがポイントです。',
-    svg: getStep4SVG(),
-  },
-  {
-    number: 5,
-    title: '引き締める',
-    description: '両方の紐を引っ張って、結び目をしっかりと引き締めます。',
-    svg: getStep5SVG(),
-  },
-];
-
 // SVG図（簡易版 - 後で実際の図に置き換え可能）
 function getStep1SVG(): string {
   return `
@@ -92,6 +59,39 @@ function getStep5SVG(): string {
     </svg>
   `;
 }
+
+export const steps: Step[] = [
+  {
+    number: 1,
+    title: '紐を準備する',
+    description: '結びたい2本の紐を用意します。同じ長さの紐を使うと結びやすいです。',
+    svg: getStep1SVG(),
+  },
+  {
+    number: 2,
+    title: '紐を交差させる',
+    description: '2本の紐を十字に交差させます。交差する位置は、結びたい位置に合わせて調整しましょう。',
+    svg: getStep2SVG(),
+  },
+  {
+    number: 3,
+    title: '輪を作る',
+    description: '片方の紐の端を、もう片方の紐の下を通して輪を作ります。',
+    svg: getStep3SVG(),
+  },
+  {
+    number: 4,
+    title: 'もう一度輪を作る',
+    description: '同じ方向にもう一度輪を作ります。最初の輪と同じ方向に回すのがポイントです。',
+    svg: getStep4SVG(),
+  },
+  {
+    number: 5,
+    title: '引き締める',
+    description: '両方の紐を引っ張って、結び目をしっかりと引き締めます。',
+    svg: getStep5SVG(),
+  },
+];
 
 // 手順を表示する関数
 export function initSteps(): void {
